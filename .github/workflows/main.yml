@@ -117,11 +117,22 @@ jobs:
           artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
           echo "artifact_build_name=$artifact_build_name" >> $GITHUB_OUTPUT
           echo "artifact_dir=$artifact_dir" >> $GITHUB_OUTPUT
+
+      - name: Injection Environment Preparation
+        run: |
+          echo "MIRYOKU_MAPPING = EXTENDED" >> users/manna-harbour_miryoku/custom_rules.mk
+
+      - name: Generate JSON Keymap
+        run: qmk c2json -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku > keymap.json
+
       - name: Build
         run: qmk compile -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku -e CONVERT_TO=promicro_rp2040 -e MIRYOKU_MAPPING=${{ matrix.mapping }}
+
       - name: Copy firmware
         run: |
           cp *manna-harbour_miryoku* "${{ steps.inputs.outputs.artifact_dir }}"
+          cp keymap.json "${{ steps.inputs.outputs.artifact_dir }}/"
+
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:

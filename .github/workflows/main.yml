@@ -123,7 +123,9 @@ jobs:
           echo "MIRYOKU_MAPPING = EXTENDED" >> users/manna-harbour_miryoku/custom_rules.mk
 
       - name: Generate JSON Keymap
-        run: qmk c2json -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku users/manna-harbour_miryoku/keymap.c > keymap.json
+        run: |
+          qmk generate-keymap -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku > qmk_configurator_keymap.json
+          cp qmk_configurator_keymap.json keymap.json
 
       - name: Build
         run: qmk compile -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku -e CONVERT_TO=promicro_rp2040 -e MIRYOKU_MAPPING=${{ matrix.mapping }}

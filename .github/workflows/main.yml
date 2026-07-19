@@ -1,5 +1,5 @@
 # Copyright 2021 Manna Harbour
-# https://github.com/manna-harbour/miryoku
+# https://github.com
 
 name: 'Main'
 on:
@@ -66,7 +66,7 @@ jobs:
             repo=`echo "$merge" | cut -f 2 -d '/'`
             branch=`echo "$merge" | cut -f 3- -d '/'`
             remote="$user-$repo"
-            git remote add "$remote" "https://github.com/$user/$repo.git"
+            git remote add "$remote" "https://github.com"
             git fetch "$remote" "$branch"
             git merge "$remote/$branch"
             git remote remove "$remote"
@@ -123,7 +123,7 @@ jobs:
           echo "MIRYOKU_MAPPING = EXTENDED" >> users/manna-harbour_miryoku/custom_rules.mk
 
       - name: Generate JSON Keymap
-        run: qmk c2json -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku > keymap.json
+        run: qmk c2json -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku keyboards/crkbd/keymaps/manna-harbour_miryoku/keymap.c > keymap.json
 
       - name: Build
         run: qmk compile -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku -e CONVERT_TO=promicro_rp2040 -e MIRYOKU_MAPPING=${{ matrix.mapping }}

@@ -120,7 +120,7 @@ jobs:
       - name: Build
         run: |
           qmk compile -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku -e CONVERT_TO=promicro_rp2040 -e MIRYOKU_MAPPING=${{ matrix.mapping }}
-          qmk c2json -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku > keymap.json
+          qmk c2json -kb ${{ matrix.keyboard }} -km manna-harbour_miryoku users/manna-harbour_miryoku/manna-harbour_miryoku.c > keymap.json || true
       - name: Copy firmware
         run: |
           cp *manna-harbour_miryoku* "${{ steps.inputs.outputs.artifact_dir }}"

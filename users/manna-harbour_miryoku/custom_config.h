@@ -7,7 +7,3 @@
 
 #define TAPPING_TERM 200
 #define PERMISSIVE_HOLD
-
-// Override Miryoku's default QUICK_TAP_TERM of 0
-#undef QUICK_TAP_TERM
-#define QUICK_TAP_TERM 120

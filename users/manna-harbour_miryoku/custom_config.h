@@ -11,7 +11,7 @@
 #define TAPPING_TERM 200
 
 // Enable per-key tapping term overrides
-#define TAPPING_TERM_PER_KEY
+// #define TAPPING_TERM_PER_KEY
 
 // Permissive hold: if you tap another key while holding a mod-tap,
 // the mod-tap becomes the modifier (hold) immediately
@@ -23,4 +23,4 @@
 #define QUICK_TAP_TERM 120
 
 // Enable per-key quick tap if you want different values per finger
-#define QUICK_TAP_TERM_PER_KEY
+// #define QUICK_TAP_TERM_PER_KEY
